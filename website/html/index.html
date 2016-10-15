@@ -1,0 +1,90 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title></title>
+  <meta name="description" content="Trafalgar Place homepage">
+  <meta name="author" content="Blair Edwards">
+
+  <link rel="stylesheet" href="style.css">
+
+  <script>
+    function openCity(evt, cityName) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the link that opened the tab
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+  </script>
+
+
+</head>
+
+<body>
+
+
+<div class=topBanner>
+   <h1 class=topHeader>16 Trafalgar Place</h1>
+</div>
+
+<?php
+if ($_GET['run']) {
+  # This code will run if ?run=true is set.
+  exec("/home/blair/mkPlot.sh");
+}
+?>
+
+<?php 
+$f=fopen("command","w");
+fwrite($f,$_POST['command']);
+fclose($f);
+sleep(2); 
+header('location:/remote');
+?>
+
+<!-- This link will add ?run=true to your URL, myfilename.php?run=true -->
+<a href="?run=true">Click Me!</a>
+
+<ul class="tab">
+  <li><a href="#" class="tablinks" onclick="openCity(event, 'Tokyo')">Hello</a></li>
+  <li><a href="#" class="tablinks" onclick="openCity(event, 'London')">Video stream</a></li>
+  <li><a href="#" class="tablinks" onclick="openCity(event, 'Paris')">Sensor Plots</a></li>
+</ul>
+
+
+<div id="Tokyo" class="tabcontent">
+  <h3>Tokyo</h3>
+  <p>Tokyo is the capital of Japan.</p>
+</div>
+
+<div id="London" class="tabcontent">
+   <img src="http://192.168.0.24:8080/?action=stream" />
+</div>
+
+<div id="Paris" class="tabcontent">
+  <button onclick="var ifr=document.getElementsByName('mainPlot')[0]; ifr.src=ifr.src;">Refresh Iframe</button>
+  <iframe name="mainPlot" src="tempPlots.html"></iframe>
+</div>
+
+
+
+
+</body>
+</html>

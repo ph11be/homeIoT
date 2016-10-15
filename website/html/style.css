@@ -1,0 +1,79 @@
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.topBanner {
+    background-color: #004848;
+    height: 100px;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+}
+
+
+.topHeader {
+    font-family: Verdana;
+    font-size: 36px;
+    color: #E8D033;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 100px;
+}
+
+
+.non-floater { 
+   overflow:hidden; 
+}
+
+
+iframe { 
+   width: 100%; 
+   padding: 0; 
+   border: 0; 
+   height: 600px;
+   border: 1px solid blue; 
+}
+
+/* Style the list */
+ul.tab {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #BB472E;
+}
+
+/* Float the list items side by side */
+ul.tab li {float: left;}
+
+/* Style the links inside the list items */
+ul.tab li a {
+    display: inline-block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of links on hover */
+ul.tab li a:hover {background-color: #ddd;}
+
+/* Create an active/current tablink class */
+ul.tab li a:focus, .active {background-color: #ccc;}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+
+
+
