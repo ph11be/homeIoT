@@ -28,7 +28,7 @@ df2 = pd.read_sql(sqlQuery, db)
 df2 = df2[df2.temperature != 0]
 df2 = df2[df2.humidity<101]
 
-# Grab data from nodemcu1
+# Grab data from nodemcu2
 sqlQuery = "SELECT * FROM nodemcu2;"
 df3 = pd.read_sql(sqlQuery, db)
 
@@ -45,14 +45,16 @@ titText = 'Last updated at ' + str(df.logdate.tail(1)) + ' - ' + str(df.temperat
 
 p1 = figure(title=titText, height=400, width=800, x_axis_type="datetime")
 p1.line(df.logdate, df.humidity, color='#183048', legend='Living room', line_width=3)
-p1.line(df2.logdate, df2.humidity, color='#66ffcc', legend='Nursery', line_width=3)
+p1.line(df2.logdate, df2.humidity, color='#66ffcc', legend='Nursery/kitchen', line_width=3)
+p1.line(df3.logdate, df3.humidity, color='#BB472E', legend='Dining Room', line_width=3)
 p1.xaxis.axis_label = "Date/Time"
 p1.yaxis.axis_label = "Humidity (%)"
 p1.x_range=Range1d(startTime,endTime)
 
 p2 = figure(tools='', height=400, width=800, x_range=p1.x_range, x_axis_type="datetime")
 p2.line(df.logdate, df.temperature, color='#90C0C0', legend='Living room', line_width=3)
-p2.line(df2.logdate, df2.temperature, color='#66ffcc', legend='Nursery', line_width=3)
+p2.line(df2.logdate, df2.temperature, color='#66ffcc', legend='Nursery/Kitchen', line_width=3)
+p2.line(df3.logdate, df3.temperature, color='#BB472E', legend='Dining room', line_width=3)
 p2.xaxis.axis_label = "Date/Time"
 p2.yaxis.axis_label = "Temperature (C)"
 p2.y_range=Range1d(15,26)
