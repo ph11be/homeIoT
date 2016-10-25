@@ -22,7 +22,7 @@ def grabData(sensor, start_time, end_time):
     # Open database connection
     print str(start_time)
     print str(end_time)
-    db = MySQLdb.connect("localhost","esp8266","secretpwd","esp8266" )
+    db = MySQLdb.connect("<IP address for mysql database>","<mysql username>","<mysql password>","<mysql database name>" )
 
     # prepare a cursor object using cursor() method
     cursor = db.cursor()
